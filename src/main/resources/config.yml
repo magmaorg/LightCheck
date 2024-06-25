@@ -10,8 +10,8 @@ config-version: 1.0
 language: RUSSIAN
 
 settings:
-  title: true
-  actionbar: true
+  title: false
+  actionbar: false
   bossbar: true
   message-timer: 10 # every 10 seconds a message will be sent
   timer: 300 # after how many seconds will the player be banned
