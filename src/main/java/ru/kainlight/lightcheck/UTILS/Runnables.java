@@ -84,24 +84,6 @@ public final class Runnables {
                                                             plugin,
                                                             () -> {
                                                                 checkedPlayer.approve();
-                                                                List<String> getApproveCommands =
-                                                                        plugin.getConfig()
-                                                                                .getStringList(
-                                                                                        "commands.approve");
-                                                                if (!getApproveCommands.isEmpty()) {
-                                                                    getApproveCommands.forEach(
-                                                                            commands ->
-                                                                                    plugin.getServer()
-                                                                                            .dispatchCommand(
-                                                                                                    plugin.getServer()
-                                                                                                            .getConsoleSender(),
-                                                                                                    commands
-                                                                                                            .replace(
-                                                                                                                    "<player>",
-                                                                                                                    checkedPlayer
-                                                                                                                            .getPlayer()
-                                                                                                                            .getName())));
-                                                                }
                                                             });
 
                                             return;

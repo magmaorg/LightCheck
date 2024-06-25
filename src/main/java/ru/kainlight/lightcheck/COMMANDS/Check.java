@@ -91,19 +91,6 @@ public class Check implements CommandExecutor {
                 LightPlayer.of(checked.getInspector()).sendMessage(approve_player);
 
                 checked.approve();
-
-                List<String> getApproveCommands =
-                        plugin.getConfig().getStringList("commands.approve");
-                if (!getApproveCommands.isEmpty()) {
-                    getApproveCommands.forEach(
-                            commands ->
-                                    plugin.getServer()
-                                            .dispatchCommand(
-                                                    plugin.getServer().getConsoleSender(),
-                                                    commands.replace(
-                                                            "<player>",
-                                                            checked.getPlayer().getName())));
-                }
             }
             case "approve" -> {
                 if (!sender.hasPermission("lightcheck.approve")) return true;
@@ -121,19 +108,6 @@ public class Check implements CommandExecutor {
                 lightSender.sendMessage(approve_staff);
 
                 checked.approve();
-
-                List<String> getApproveCommands =
-                        plugin.getConfig().getStringList("commands.approve");
-                if (!getApproveCommands.isEmpty()) {
-                    getApproveCommands.forEach(
-                            approveCommands ->
-                                    plugin.getServer()
-                                            .dispatchCommand(
-                                                    plugin.getServer().getConsoleSender(),
-                                                    approveCommands.replace(
-                                                            "<player>",
-                                                            checked.getPlayer().getName())));
-                }
             }
             case "disprove" -> {
                 if (!(sender.hasPermission("lightcheck.disprove"))) return true;

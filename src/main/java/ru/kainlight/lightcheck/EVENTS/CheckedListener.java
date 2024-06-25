@@ -34,16 +34,6 @@ public class CheckedListener implements Listener {
 
         if (checkedPlayer.isPresent()) {
             checkedPlayer.get().approve();
-            List<String> quitCommands = plugin.getConfig().getStringList("commands.quit");
-
-            if (!quitCommands.isEmpty()) {
-                quitCommands.forEach(
-                        command ->
-                                plugin.getServer()
-                                        .dispatchCommand(
-                                                plugin.getServer().getConsoleSender(),
-                                                command.replace("<player>", player.getName())));
-            }
         }
     }
 
@@ -56,21 +46,6 @@ public class CheckedListener implements Listener {
             CheckedPlayer checked = checkedPlayer.get();
 
             checked.approve();
-            List<String> kickCommands = plugin.getConfig().getStringList("commands.kick");
-            boolean abilityEnabled = !kickCommands.isEmpty();
-
-            if (abilityEnabled) {
-                var timer = checked.getTimer();
-
-                if (timer != null && timer >= 0) {
-                    kickCommands.forEach(
-                            command ->
-                                    plugin.getServer()
-                                            .dispatchCommand(
-                                                    plugin.getServer().getConsoleSender(),
-                                                    command.replace("<player>", player.getName())));
-                }
-            }
         }
     }
 
