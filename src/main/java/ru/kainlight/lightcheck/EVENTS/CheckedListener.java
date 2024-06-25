@@ -2,8 +2,6 @@ package ru.kainlight.lightcheck.EVENTS;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +15,6 @@ import ru.kainlight.lightcheck.API.LightCheckAPI;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlayer;
 import ru.kainlight.lightcheck.Main;
 
-import java.util.List;
 import java.util.Optional;
 
 public class CheckedListener implements Listener {
@@ -53,14 +50,8 @@ public class CheckedListener implements Listener {
     public void onCommandsChecked(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
 
-        if (isCheckingAndAbilityEnabled(player, "block-chat.enable")) {
-            List<String> allowedCommands =
-                    plugin.getConfig().getStringList("abilities.block-chat.allowed-commands");
-            String[] message = event.getMessage().replace("/", "").split(" ");
-
-            if (!allowedCommands.contains(message[0])) {
-                event.setCancelled(true);
-            }
+        if (isCheckingAndAbilityEnabled(player, "block-chat")) {
+            event.setCancelled(true);
         }
     }
 
@@ -68,7 +59,7 @@ public class CheckedListener implements Listener {
     public void onChatChecked(AsyncChatEvent event) {
         Player player = event.getPlayer();
 
-        if (isCheckingAndAbilityEnabled(player, "block-chat.enable")) {
+        if (isCheckingAndAbilityEnabled(player, "block-chat")) {
             event.setCancelled(true);
 
             Player staff = LightCheckAPI.get().getCheckedPlayer(player).get().getInspector();
@@ -77,10 +68,7 @@ public class CheckedListener implements Listener {
                             .getConfig()
                             .getString("chat.dialog")
                             .replace("<username>", player.getName())
-                            .replace(
-                                    "<message>",
-                                    MiniMessage.miniMessage()
-                                            .serialize(event.message())); // TODO: maybe?
+                            .replace("<message>", event.message().toString());
 
             LightPlayer.sendMessage(privateDialog, player, staff);
         }

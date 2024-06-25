@@ -18,17 +18,13 @@ settings:
   message-timer: 10 # every 10 seconds a message will be sent
   timer: 300 # after how many seconds will the player be banned
 
-# block-move may conflict with anti-cheats
 abilities:
   teleport-to-staff: true
-  teleport-back: true # require enabled teleport-to-staff
+  teleport-back: true
   block-gamemode: true
   block-move: true
   block-drops: true
   block-pickup: true
   block-damage: true
   block-interact: true
-  block-chat:
-    enable: true
-    allowed-commands:
-      - "check"
+  block-chat: true
