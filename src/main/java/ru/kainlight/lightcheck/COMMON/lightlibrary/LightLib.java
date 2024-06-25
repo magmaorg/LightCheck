@@ -2,6 +2,7 @@ package ru.kainlight.lightcheck.COMMON.lightlibrary;
 
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
+
 import ru.kainlight.lightcheck.COMMON.lightlibrary.UTILS.Parser;
 
 public final class LightLib {
@@ -60,7 +61,4 @@ public final class LightLib {
             return false;
         }
     }
-
-
-
 }

@@ -1,8 +1,10 @@
 package ru.kainlight.lightcheck;
 
 import lombok.Getter;
+
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.ApiStatus.Internal;
+
 import ru.kainlight.lightcheck.COMMANDS.Check;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.CONFIGS.BukkitConfig;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlugin;
@@ -15,8 +17,7 @@ import ru.kainlight.lightcheck.UTILS.Runnables;
 @SuppressWarnings("all")
 public final class Main extends LightPlugin {
 
-    @Getter
-    private static Main instance;
+    @Getter private static Main instance;
     private Runnables runnables;
 
     @Override
@@ -43,5 +44,4 @@ public final class Main extends LightPlugin {
         HandlerList.unregisterAll(this);
         this.getServer().getScheduler().cancelTasks(this);
     }
-
 }

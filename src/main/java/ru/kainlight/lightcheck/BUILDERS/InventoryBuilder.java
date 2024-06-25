@@ -1,6 +1,7 @@
 package ru.kainlight.lightcheck.BUILDERS;
 
 import net.kyori.adventure.text.Component;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,22 +26,22 @@ public final class InventoryBuilder implements Listener, Cloneable {
 
     public InventoryBuilder(Plugin plugin, int size, boolean event) {
         inventory = Bukkit.createInventory(null, size);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(Plugin plugin, Inventory inventory, boolean event) {
         this.inventory = inventory;
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(Plugin plugin, Player player, int size, String title, boolean event) {
         inventory = Bukkit.createInventory(player, size, title);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(Plugin plugin, InventoryHolder holder, int size, boolean event) {
         inventory = Bukkit.createInventory(holder, size);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(Plugin plugin, InventoryHolder holder, InventoryType type) {
@@ -48,24 +49,27 @@ public final class InventoryBuilder implements Listener, Cloneable {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    public InventoryBuilder(Plugin plugin, InventoryHolder holder, InventoryType type, Component title) {
+    public InventoryBuilder(
+            Plugin plugin, InventoryHolder holder, InventoryType type, Component title) {
         inventory = Bukkit.createInventory(holder, type, title);
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    public InventoryBuilder(Plugin plugin, InventoryHolder holder, int size, String title, boolean event) {
+    public InventoryBuilder(
+            Plugin plugin, InventoryHolder holder, int size, String title, boolean event) {
         inventory = Bukkit.createInventory(holder, size, title);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    public InventoryBuilder(Plugin plugin, InventoryHolder holder, int size, Component title, boolean event) {
+    public InventoryBuilder(
+            Plugin plugin, InventoryHolder holder, int size, Component title, boolean event) {
         inventory = Bukkit.createInventory(holder, size, title);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(Plugin plugin, Component title, int size, boolean event) {
         inventory = Bukkit.createInventory(null, size, title);
-        if(event) Bukkit.getPluginManager().registerEvents(this, plugin);
+        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder setItems(LinkedList<Integer> index, LinkedList<ItemStack> items) {
@@ -87,9 +91,13 @@ public final class InventoryBuilder implements Listener, Cloneable {
     }
 
     @SafeVarargs
-    public final InventoryBuilder setItem(int index, ItemStack itemStack, Consumer<InventoryClickEvent>... consumers) {
+    public final InventoryBuilder setItem(
+            int index, ItemStack itemStack, Consumer<InventoryClickEvent>... consumers) {
         inventory.setItem(index, itemStack);
-        List.of(consumers).forEach(inventoryClickEventConsumer -> itemHandlers.put(index, inventoryClickEventConsumer));
+        List.of(consumers)
+                .forEach(
+                        inventoryClickEventConsumer ->
+                                itemHandlers.put(index, inventoryClickEventConsumer));
         return this;
     }
 

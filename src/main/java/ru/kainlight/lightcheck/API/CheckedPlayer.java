@@ -2,16 +2,17 @@ package ru.kainlight.lightcheck.API;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
 import ru.kainlight.lightcheck.COMMON.Others;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlayer;
 import ru.kainlight.lightcheck.Main;
 
 public final class CheckedPlayer {
 
-    @Getter
-    private final Player player;
+    @Getter private final Player player;
     @Getter private final Player inspector;
     @Getter @Setter private Long timer;
     private boolean hasTimer;
@@ -25,7 +26,7 @@ public final class CheckedPlayer {
     }
 
     public void approve() {
-        if(player == null) return;
+        if (player == null) return;
         if (!LightCheckAPI.get().isChecking(player)) return;
 
         var event = new LightCheckAPI.PlayerApproveCheckEvent(player);
@@ -39,7 +40,7 @@ public final class CheckedPlayer {
     }
 
     public void disprove() {
-        if(player == null) return;
+        if (player == null) return;
         if (!LightCheckAPI.get().isChecking(player)) return;
 
         var event = new LightCheckAPI.PlayerDisproveCheckEvent(player);
@@ -54,7 +55,8 @@ public final class CheckedPlayer {
     }
 
     public void teleportToInspector() {
-        boolean teleportToStaff = Main.getInstance().getConfig().getBoolean("abilities.teleport-to-staff");
+        boolean teleportToStaff =
+                Main.getInstance().getConfig().getBoolean("abilities.teleport-to-staff");
         if (!teleportToStaff) return;
         if (player == null || getInspector() == null) return;
 
@@ -63,10 +65,11 @@ public final class CheckedPlayer {
     }
 
     public void teleportBack() {
-        boolean teleportToStaff = Main.getInstance().getConfig().getBoolean("abilities.teleport-to-staff");
+        boolean teleportToStaff =
+                Main.getInstance().getConfig().getBoolean("abilities.teleport-to-staff");
         boolean teleportBack = Main.getInstance().getConfig().getBoolean("abilities.teleport-back");
         if (!teleportToStaff && !teleportBack) return;
-        if(player == null) return;
+        if (player == null) return;
 
         player.teleport(getPreviousLocation());
     }

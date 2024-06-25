@@ -1,8 +1,8 @@
 package ru.kainlight.lightcheck.COMMON.lightlibrary.CONFIGS;
 
-import lombok.Setter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlugin;
 
 import java.io.File;
@@ -36,7 +36,6 @@ public final class BukkitConfig {
         saveDefaultConfig();
     }
 
-
     public void saveDefaultConfig() {
         if (configFile == null) {
             if (subdirectory == null) {
@@ -62,7 +61,8 @@ public final class BukkitConfig {
     public void reloadConfig() {
         if (configFile == null) {
             if (subdirectory != null) {
-                configFile = new File(plugin.getDataFolder() + File.separator + subdirectory, fileName);
+                configFile =
+                        new File(plugin.getDataFolder() + File.separator + subdirectory, fileName);
             } else {
                 configFile = new File(plugin.getDataFolder(), fileName);
             }
@@ -134,32 +134,42 @@ public final class BukkitConfig {
         // Загрузка текущей конфигурации
         FileConfiguration userConfig = this.getConfig();
         Double version = userConfig.getDouble("config-version");
-        if(version == null) return;
-        if(version == CONFIG_VERSION) return;
+        if (version == null) return;
+        if (version == CONFIG_VERSION) return;
 
         InputStream defaultConfigStream;
         // Чтение конфигурации по умолчанию из JAR-файла
-        if(subdirectory != null) {
+        if (subdirectory != null) {
             defaultConfigStream = plugin.getResource(subdirectory + "/" + fileName);
         } else {
             defaultConfigStream = plugin.getResource(fileName);
         }
-        InputStreamReader inputConfigReader = new InputStreamReader(defaultConfigStream, StandardCharsets.UTF_8);
+        InputStreamReader inputConfigReader =
+                new InputStreamReader(defaultConfigStream, StandardCharsets.UTF_8);
         YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(inputConfigReader);
 
-        // Добавление отсутствующих значений из конфигурации по умолчанию и удаление удаленных ключей
-        defaultConfig.getKeys(true).forEach(key -> {
-            // Если у пользователя нет такого ключа или его значение является значением по умолчанию, добавляем его
-            if (!userConfig.contains(key) || userConfig.get(key).equals(defaultConfig.get(key))) {
-                userConfig.set(key, defaultConfig.get(key));
-            }
-        });
+        // Добавление отсутствующих значений из конфигурации по умолчанию и удаление удаленных
+        // ключей
+        defaultConfig
+                .getKeys(true)
+                .forEach(
+                        key -> {
+                            // Если у пользователя нет такого ключа или его значение является
+                            // значением по умолчанию, добавляем его
+                            if (!userConfig.contains(key)
+                                    || userConfig.get(key).equals(defaultConfig.get(key))) {
+                                userConfig.set(key, defaultConfig.get(key));
+                            }
+                        });
 
-        userConfig.getKeys(true).forEach(key -> {
-            if (!defaultConfig.contains(key)) {
-                userConfig.set(key, null);
-            }
-        });
+        userConfig
+                .getKeys(true)
+                .forEach(
+                        key -> {
+                            if (!defaultConfig.contains(key)) {
+                                userConfig.set(key, null);
+                            }
+                        });
 
         plugin.getLogger().warning(fileName + " updated");
         getConfig().set("config-version", CONFIG_VERSION);
@@ -176,5 +186,4 @@ public final class BukkitConfig {
     public void setConfigVersion(double ver) {
         this.CONFIG_VERSION = ver;
     }
-
 }

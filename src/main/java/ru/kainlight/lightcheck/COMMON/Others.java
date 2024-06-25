@@ -14,7 +14,8 @@ public class Others {
         Location clonedLocation = location.clone();
         Block block;
 
-        // Используем do-while цикл для того, чтобы добавить (0, -1, 0) к локации игрока до тех пор, пока блок под ним не станет твердым
+        // Используем do-while цикл для того, чтобы добавить (0, -1, 0) к локации игрока до тех пор,
+        // пока блок под ним не станет твердым
         do {
             clonedLocation.subtract(0, 1, 0);
             block = clonedLocation.getBlock();
@@ -25,6 +26,4 @@ public class Others {
 
         return clonedLocation;
     }
-
-
 }

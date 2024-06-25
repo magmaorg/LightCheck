@@ -1,6 +1,7 @@
 package ru.kainlight.lightcheck.COMMON.lightlibrary.UTILS;
 
 import org.bukkit.plugin.Plugin;
+
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightLib;
 import ru.kainlight.lightcheck.Main;
 

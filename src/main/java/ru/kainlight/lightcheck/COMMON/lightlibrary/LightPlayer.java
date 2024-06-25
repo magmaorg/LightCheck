@@ -1,6 +1,7 @@
 package ru.kainlight.lightcheck.COMMON.lightlibrary;
 
 import lombok.Getter;
+
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
@@ -8,11 +9,12 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import ru.kainlight.lightcheck.COMMON.lightlibrary.UTILS.Parser;
-import ru.kainlight.lightcheck.Main;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -20,8 +22,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public final class LightPlayer {
-    @Getter
-    private final Audience sender;
+    @Getter private final Audience sender;
 
     private LightPlayer(CommandSender sender) {
         this.sender = sender;
@@ -36,9 +37,10 @@ public final class LightPlayer {
 
         Component mainComponent = Parser.get().hex(message);
         Component hoverComponent = Parser.get().hex(hover);
-        Component component = mainComponent
-                .clickEvent(ClickEvent.runCommand(command))
-                .hoverEvent(HoverEvent.showText(hoverComponent));
+        Component component =
+                mainComponent
+                        .clickEvent(ClickEvent.runCommand(command))
+                        .hoverEvent(HoverEvent.showText(hoverComponent));
 
         sender.sendMessage(component);
     }
@@ -73,7 +75,8 @@ public final class LightPlayer {
         if (message == null) return;
 
         Component hoverComponent = Parser.get().hex(hover);
-        Component component = Parser.get().hex(message).hoverEvent(HoverEvent.showText(hoverComponent));
+        Component component =
+                Parser.get().hex(message).hoverEvent(HoverEvent.showText(hoverComponent));
 
         sender.sendMessage(component);
     }
@@ -83,7 +86,11 @@ public final class LightPlayer {
         Component titleComponent = Parser.get().hex(title);
         Component subtitleComponent = Parser.get().hex(subtitle);
 
-        Title.Times times = Title.Times.of(Duration.ofSeconds(fadeIn), Duration.ofSeconds(stay), Duration.ofSeconds(fadeOut));
+        Title.Times times =
+                Title.Times.of(
+                        Duration.ofSeconds(fadeIn),
+                        Duration.ofSeconds(stay),
+                        Duration.ofSeconds(fadeOut));
         Title titleToSend = Title.title(titleComponent, subtitleComponent, times);
 
         sender.showTitle(titleToSend);
@@ -125,10 +132,11 @@ public final class LightPlayer {
     public static void sendMessageForAll(List<String> messages) {
         if (messages == null || messages.isEmpty()) return;
 
-        messages.forEach(message -> {
-            Component component = Parser.get().hex(message);
-            sendMessageForAll(message);
-        });
+        messages.forEach(
+                message -> {
+                    Component component = Parser.get().hex(message);
+                    sendMessageForAll(message);
+                });
     }
 
     public static void sendMessageForAll(String... message) {
@@ -137,5 +145,4 @@ public final class LightPlayer {
         if (messages.isEmpty()) return;
         sendMessageForAll(messages);
     }
-
 }

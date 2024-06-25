@@ -1,7 +1,9 @@
 package ru.kainlight.lightcheck.BUILDERS;
 
 import lombok.NoArgsConstructor;
+
 import net.kyori.adventure.text.Component;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -9,10 +11,12 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+
 import ru.kainlight.lightcheck.COMMON.lightlibrary.UTILS.Parser;
 
-import javax.annotation.Nonnegative;
 import java.util.*;
+
+import javax.annotation.Nonnegative;
 
 @SuppressWarnings("all")
 @NoArgsConstructor
@@ -92,7 +96,11 @@ public final class ItemBuilder {
     }
 
     public ItemBuilder color(@NotNull Color color) {
-        if (!this.material.name().toLowerCase(Locale.ROOT).split("_")[0].equalsIgnoreCase("leather")) {
+        if (!this.material
+                .name()
+                .toLowerCase(Locale.ROOT)
+                .split("_")[0]
+                .equalsIgnoreCase("leather")) {
             throw new IllegalStateException("The material must be a leather equipment part.");
         }
         this.color = color;
@@ -140,7 +148,11 @@ public final class ItemBuilder {
     }
 
     public ItemBuilder defaultFlags() {
-        this.flags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE);
+        this.flags(
+                ItemFlag.HIDE_ATTRIBUTES,
+                ItemFlag.HIDE_ENCHANTS,
+                ItemFlag.HIDE_DESTROYS,
+                ItemFlag.HIDE_UNBREAKABLE);
         return this;
     }
 
@@ -202,7 +214,10 @@ public final class ItemBuilder {
     public ItemBuilder clearEnchants() {
         if (!this.itemMeta.hasEnchants()) return this;
 
-        this.itemMeta.getEnchants().keySet().forEach(enchantment -> this.itemMeta.removeEnchant(enchantment));
+        this.itemMeta
+                .getEnchants()
+                .keySet()
+                .forEach(enchantment -> this.itemMeta.removeEnchant(enchantment));
         return this;
     }
 
@@ -292,7 +307,8 @@ public final class ItemBuilder {
             this.flags.forEach(itemFlag -> this.itemMeta.addItemFlags(itemFlag));
         }
         if (!this.enchantments.isEmpty()) {
-            this.enchantments.forEach((enchantment, level) -> this.itemMeta.addEnchant(enchantment, level, true));
+            this.enchantments.forEach(
+                    (enchantment, level) -> this.itemMeta.addEnchant(enchantment, level, true));
         }
 
         this.itemStack.setAmount(this.amount);
@@ -309,5 +325,4 @@ public final class ItemBuilder {
 
         return this.itemStack;
     }
-
 }

@@ -7,6 +7,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.*;
+
 import ru.kainlight.lightcheck.API.CheckedPlayer;
 import ru.kainlight.lightcheck.API.LightCheckAPI;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlayer;
@@ -28,15 +29,19 @@ public class CheckedListener implements Listener {
         Player player = event.getPlayer();
         Optional<CheckedPlayer> checkedPlayer = LightCheckAPI.get().getCheckedPlayer(player);
 
-        if(checkedPlayer.isPresent()) {
+        if (checkedPlayer.isPresent()) {
             checkedPlayer.get().approve();
             List<String> quitCommands = plugin.getConfig().getStringList("commands.quit");
 
             if (!quitCommands.isEmpty()) {
-                quitCommands.forEach(command -> plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command.replace("<player>", player.getName())));
+                quitCommands.forEach(
+                        command ->
+                                plugin.getServer()
+                                        .dispatchCommand(
+                                                plugin.getServer().getConsoleSender(),
+                                                command.replace("<player>", player.getName())));
             }
         }
-
     }
 
     @EventHandler
@@ -55,10 +60,14 @@ public class CheckedListener implements Listener {
                 var timer = checked.getTimer();
 
                 if (timer != null && timer >= 0) {
-                    kickCommands.forEach(command -> plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command.replace("<player>", player.getName())));
+                    kickCommands.forEach(
+                            command ->
+                                    plugin.getServer()
+                                            .dispatchCommand(
+                                                    plugin.getServer().getConsoleSender(),
+                                                    command.replace("<player>", player.getName())));
                 }
             }
-
         }
     }
 
@@ -67,7 +76,8 @@ public class CheckedListener implements Listener {
         Player player = event.getPlayer();
 
         if (isCheckingAndAbilityEnabled(player, "block-chat.enable")) {
-            List<String> allowedCommands = plugin.getConfig().getStringList("abilities.block-chat.allowed-commands");
+            List<String> allowedCommands =
+                    plugin.getConfig().getStringList("abilities.block-chat.allowed-commands");
             String[] message = event.getMessage().replace("/", "").split(" ");
 
             if (!allowedCommands.contains(message[0])) {
@@ -75,7 +85,6 @@ public class CheckedListener implements Listener {
             }
         }
     }
-
 
     @EventHandler
     public void onChatChecked(AsyncPlayerChatEvent event) {
@@ -85,9 +94,12 @@ public class CheckedListener implements Listener {
             event.setCancelled(true);
 
             Player staff = LightCheckAPI.get().getCheckedPlayer(player).get().getInspector();
-            String privateDialog = plugin.getMessageConfig().getConfig().getString("chat.dialog")
-                    .replace("<username>", player.getName())
-                    .replace("<message>", event.getMessage());
+            String privateDialog =
+                    plugin.getMessageConfig()
+                            .getConfig()
+                            .getString("chat.dialog")
+                            .replace("<username>", player.getName())
+                            .replace("<message>", event.getMessage());
 
             LightPlayer.sendMessage(privateDialog, player, staff);
         }
@@ -161,5 +173,4 @@ public class CheckedListener implements Listener {
         boolean abilityEnabled = plugin.getConfig().getBoolean("abilities." + abilityName);
         return isChecked && abilityEnabled;
     }
-
 }

@@ -1,12 +1,13 @@
 package ru.kainlight.lightcheck.UTILS;
 
 import lombok.Getter;
+
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
+
 import ru.kainlight.lightcheck.API.CheckedPlayer;
 import ru.kainlight.lightcheck.API.LightCheckAPI;
 import ru.kainlight.lightcheck.COMMON.lightlibrary.UTILS.Parser;
@@ -37,7 +38,7 @@ public final class Bossbar {
 
     public boolean show() {
         if (!enabled) return false;
-        if(checkedPlayer == null) return false;
+        if (checkedPlayer == null) return false;
         Long playerTimer = checkedPlayer.getTimer();
 
         if (playerTimer == null || playerTimer <= 0) {
@@ -63,7 +64,8 @@ public final class Bossbar {
     public void hide() {
         BukkitScheduler scheduler = plugin.getServer().getScheduler();
 
-        String bossbarText = plugin.getMessageConfig().getConfig().getString("screen.disprove-title");
+        String bossbarText =
+                plugin.getMessageConfig().getConfig().getString("screen.disprove-title");
         if (bossbarText == null || bossbarText.isEmpty()) {
             this.bossBar.removePlayer(checkedPlayer.getPlayer());
             return;
@@ -72,16 +74,17 @@ public final class Bossbar {
         bossBar.setTitle(Parser.get().hexString(bossbarText));
         bossBar.setProgress(0.0);
 
-        scheduler.runTaskLater(plugin, () -> {
-            this.bossBar.removePlayer(checkedPlayer.getPlayer());
+        scheduler.runTaskLater(
+                plugin,
+                () -> {
+                    this.bossBar.removePlayer(checkedPlayer.getPlayer());
 
-            Map<CheckedPlayer, Integer> sch = plugin.getRunnables().bossbarScheduler;
-            Integer remove = sch.get(checkedPlayer);
-            if(remove == null) return;
-            scheduler.cancelTask(remove);
-            sch.remove(checkedPlayer);
-        }, 20L * 2);
-
+                    Map<CheckedPlayer, Integer> sch = plugin.getRunnables().bossbarScheduler;
+                    Integer remove = sch.get(checkedPlayer);
+                    if (remove == null) return;
+                    scheduler.cancelTask(remove);
+                    sch.remove(checkedPlayer);
+                },
+                20L * 2);
     }
-
 }
