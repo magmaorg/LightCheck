@@ -1,11 +1,9 @@
 name: LightCheck
 main: ru.kainlight.lightcheck.Main
-version: '${project.version}'
-api-version: '1.17'
+version: "2.2.1"
+api-version: "1.17"
 
-author: kainlight
-description: '${pom.description}'
-website: '${pom.organization.url}'
+authors: [kainlight, PadowYT2]
 
 softdepend:
   - PlaceholderAPI
