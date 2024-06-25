@@ -170,15 +170,6 @@ public final class Runnables {
 
                         LightPlayer.of(player).sendMessage(message);
                     });
-        } else {
-            List<String> without_timer =
-                    plugin.getMessageConfig().getConfig().getStringList("chat.without-timer");
-            without_timer.forEach(
-                    message -> {
-                        message = message.replace("<inspector>", inspector.getName());
-
-                        LightPlayer.of(player).sendMessage(message);
-                    });
         }
     }
 
