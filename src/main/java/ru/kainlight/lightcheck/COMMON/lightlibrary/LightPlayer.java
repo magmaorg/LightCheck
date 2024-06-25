@@ -3,10 +3,10 @@ package ru.kainlight.lightcheck.COMMON.lightlibrary;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -20,14 +20,11 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public final class LightPlayer {
-
-    @Getter
-    private static final BukkitAudiences audience = BukkitAudiences.create(Main.getInstance());
     @Getter
     private final Audience sender;
 
     private LightPlayer(CommandSender sender) {
-        this.sender = audience.sender(sender);
+        this.sender = sender;
     }
 
     public static LightPlayer of(CommandSender sender) {
@@ -112,17 +109,17 @@ public final class LightPlayer {
     public static void sendMessage(String message, Player... players) {
         if (message == null) return;
 
-        Component component = Parser.get().hex(message);
+        Component component = MiniMessage.miniMessage().deserialize(message);
         for (Player player : players) {
-            audience.player(player).sendMessage(component);
+            player.sendMessage(component);
         }
     }
 
     public static void sendMessageForAll(String message) {
         if (message == null) return;
-        Component component = Parser.get().hex(message);
+        Component component = MiniMessage.miniMessage().deserialize(message);
 
-        Bukkit.getServer().getOnlinePlayers().forEach(online -> audience.player(online).sendMessage(component));
+        Bukkit.getServer().getOnlinePlayers().forEach(online -> online.sendMessage(component));
     }
 
     public static void sendMessageForAll(List<String> messages) {
