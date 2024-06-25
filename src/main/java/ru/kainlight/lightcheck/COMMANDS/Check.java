@@ -76,8 +76,8 @@ public class Check implements CommandExecutor {
                         });
                 lightSender.sendMessage(footer);
             }
-            case "disprove" -> {
-                if (!(sender.hasPermission("lightcheck.disprove"))) return true;
+            case "done" -> {
+                if (!(sender.hasPermission("lightcheck.done"))) return true;
 
                 Optional<CheckedPlayer> checkedPlayer =
                         LightCheckAPI.get().getCheckedPlayerByInspector(sender);
@@ -226,7 +226,7 @@ public class Check implements CommandExecutor {
         sender.sendMessage(" &c&m   &e&l LIGHTCHECK ПОМОЩЬ &c&m   ");
         sender.sendMessage(" &c&l» &a/check list &8- &7список текущих проверок");
         sender.sendMessage(" &c&l» &a/check <player> &8- &7вызвать на проверку");
-        sender.sendMessage(" &c&l» &a/check disprove  &8- &7признать невиновным");
+        sender.sendMessage(" &c&l» &a/check done  &8- &7признать невиновным");
         sender.sendMessage(" &c&l» &a/check timer stop &8- &7отключить таймер");
         sender.sendMessage(" &c&l» &a/check stop-all &8- &7отменить все текущие проверки");
         sender.sendMessage(" &c&l» &a/check reload &8- &7перезагрузить конфигурации (для консоли)");
@@ -249,7 +249,7 @@ public class Check implements CommandExecutor {
                     || cmd.getName().equalsIgnoreCase("check")) {
                 if (args.length == 1) {
                     List<String> completionsCopy =
-                            new ArrayList<>(Arrays.asList("list", "disprove", "timer", "stop-all"));
+                            new ArrayList<>(Arrays.asList("list", "done", "timer", "stop-all"));
                     List<String> playerNames =
                             plugin.getServer().getOnlinePlayers().stream()
                                     .map(Player::getName)

@@ -19,7 +19,7 @@ permissions:
     default: op
   lightcheck.check:
     default: op
-  lightcheck.disprove:
+  lightcheck.done:
     default: op
   lightcheck.timer.continue:
     default: op
@@ -33,7 +33,7 @@ permissions:
     children:
       lightcheck.list: true
       lightcheck.check: true
-      lightcheck.disprove: true
+      lightcheck.done: true
       lightcheck.timer.continue: true
       lightcheck.timer.stop: true
       lightcheck.stop-all: true
