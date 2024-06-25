@@ -19,8 +19,6 @@ permissions:
     default: op
   lightcheck.check:
     default: op
-  lightcheck.confirm:
-    default: not op
   lightcheck.approve:
     default: not op
   lightcheck.disprove:

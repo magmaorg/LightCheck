@@ -155,7 +155,6 @@ public final class Runnables {
             return;
         }
 
-        String hoverMessage = plugin.getMessageConfig().getConfig().getString("chat.hover");
         if (checkedPlayer.hasTimer()) {
             Long timer = checkedPlayer.getTimer();
             Long secToMin = TimeUnit.SECONDS.toMinutes(timer);
@@ -169,8 +168,7 @@ public final class Runnables {
                                         .replace("<minutes>", secToMin.toString())
                                         .replace("<seconds>", timer.toString());
 
-                        LightPlayer.of(player)
-                                .sendClickableHoverMessage(message, hoverMessage, "/check confirm");
+                        LightPlayer.of(player).sendMessage(message);
                     });
         } else {
             List<String> without_timer =
@@ -179,8 +177,7 @@ public final class Runnables {
                     message -> {
                         message = message.replace("<inspector>", inspector.getName());
 
-                        LightPlayer.of(player)
-                                .sendClickableHoverMessage(message, hoverMessage, "/check confirm");
+                        LightPlayer.of(player).sendMessage(message);
                     });
         }
     }

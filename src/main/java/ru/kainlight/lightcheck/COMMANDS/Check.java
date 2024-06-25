@@ -76,22 +76,6 @@ public class Check implements CommandExecutor {
                         });
                 lightSender.sendMessage(footer);
             }
-            case "confirm" -> {
-                if (!LightCheckAPI.get().isChecking(sender)) return true;
-                Optional<CheckedPlayer> checkedPlayer =
-                        LightCheckAPI.get().getCheckedPlayer(sender);
-                if (checkedPlayer.isEmpty()) return true;
-                CheckedPlayer checked = checkedPlayer.get();
-
-                String approve_player =
-                        plugin.getMessageConfig()
-                                .getConfig()
-                                .getString("successfully.confirm")
-                                .replace("<username>", sender.getName());
-                LightPlayer.of(checked.getInspector()).sendMessage(approve_player);
-
-                checked.approve();
-            }
             case "approve" -> {
                 if (!sender.hasPermission("lightcheck.approve")) return true;
 
@@ -255,32 +239,15 @@ public class Check implements CommandExecutor {
     }
 
     private void sendHelpMessage(LightPlayer sender) {
-        String lang = plugin.getConfig().getString("language");
-
         sender.sendMessage(" ");
-        if (lang.equalsIgnoreCase("russian")) {
-            sender.sendMessage(" &c&m   &e&l LIGHTCHECK ПОМОЩЬ &c&m   ");
-            sender.sendMessage(" &c&l» &a/check list &8- &7список текущих проверок");
-            sender.sendMessage(" &c&l» &a/check <player> &8- &7вызвать на проверку");
-            sender.sendMessage(" &c&l» &a/check confirm &8- &7признаться виновным");
-            sender.sendMessage(" &c&l» &a/check approve &8- &7признать виновным");
-            sender.sendMessage(" &c&l» &a/check disprove  &8- &7признать невиновным");
-            sender.sendMessage(" &c&l» &a/check timer stop &8- &7отключить таймер");
-            sender.sendMessage(" &c&l» &a/check stop-all &8- &7отменить все текущие проверки");
-            sender.sendMessage(
-                    " &c&l» &a/check reload &8- &7перезагрузить конфигурации (для консоли)");
-        } else {
-            sender.sendMessage(" &c&m   &e&l LIGHTCHECK HELP &c&m   ");
-            sender.sendMessage(" &c&l» &a/check list &8- &7the list of currently checking");
-            sender.sendMessage(" &c&l» &a/check <player> &8- &7summon to check");
-            sender.sendMessage(" &c&l» &a/check confirm &8- &7plead guilty");
-            sender.sendMessage(" &c&l» &a/check approve &8- &7find guilty");
-            sender.sendMessage(" &c&l» &a/check disprove  &8- &7find not guilty");
-            sender.sendMessage(" &c&l» &a/check timer stop &8- &7disable the timer");
-            sender.sendMessage(" &c&l» &a/check stop-all &8- &7cancel all current checks");
-            sender.sendMessage(
-                    " &c&l» &a/check reload &8- &7reload all configurations (only console)");
-        }
+        sender.sendMessage(" &c&m   &e&l LIGHTCHECK ПОМОЩЬ &c&m   ");
+        sender.sendMessage(" &c&l» &a/check list &8- &7список текущих проверок");
+        sender.sendMessage(" &c&l» &a/check <player> &8- &7вызвать на проверку");
+        sender.sendMessage(" &c&l» &a/check approve &8- &7признать виновным");
+        sender.sendMessage(" &c&l» &a/check disprove  &8- &7признать невиновным");
+        sender.sendMessage(" &c&l» &a/check timer stop &8- &7отключить таймер");
+        sender.sendMessage(" &c&l» &a/check stop-all &8- &7отменить все текущие проверки");
+        sender.sendMessage(" &c&l» &a/check reload &8- &7перезагрузить конфигурации (для консоли)");
         sender.sendMessage(" ");
     }
 

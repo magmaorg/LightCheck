@@ -6,7 +6,6 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
 
@@ -30,19 +29,6 @@ public final class LightPlayer {
 
     public static LightPlayer of(CommandSender sender) {
         return new LightPlayer(sender);
-    }
-
-    public void sendClickableHoverMessage(String message, String hover, String command) {
-        if (message == null) return;
-
-        Component mainComponent = Parser.get().hex(message);
-        Component hoverComponent = Parser.get().hex(hover);
-        Component component =
-                mainComponent
-                        .clickEvent(ClickEvent.runCommand(command))
-                        .hoverEvent(HoverEvent.showText(hoverComponent));
-
-        sender.sendMessage(component);
     }
 
     public void sendClickableMessage(String message, String command) {
@@ -69,16 +55,6 @@ public final class LightPlayer {
         if (message == null) return;
         Component component = Parser.get().hex(message);
         sender.sendActionBar(component);
-    }
-
-    public void sendHoverMessage(String message, String hover) {
-        if (message == null) return;
-
-        Component hoverComponent = Parser.get().hex(hover);
-        Component component =
-                Parser.get().hex(message).hoverEvent(HoverEvent.showText(hoverComponent));
-
-        sender.sendMessage(component);
     }
 
     @SuppressWarnings("all")
