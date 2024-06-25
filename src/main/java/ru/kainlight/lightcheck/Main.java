@@ -16,7 +16,6 @@ import ru.kainlight.lightcheck.UTILS.Runnables;
 @Internal
 @SuppressWarnings("all")
 public final class Main extends LightPlugin {
-
     @Getter private static Main instance;
     private Runnables runnables;
 

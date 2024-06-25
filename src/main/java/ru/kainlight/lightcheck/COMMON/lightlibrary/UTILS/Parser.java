@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@SuppressWarnings("unused")
 public final class Parser {
-
     private static final Parser parser = new Parser();
 
     public static Parser get() {

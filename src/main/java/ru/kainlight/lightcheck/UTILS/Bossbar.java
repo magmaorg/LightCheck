@@ -17,7 +17,6 @@ import java.util.Map;
 
 @Getter
 public final class Bossbar {
-
     private final Main plugin;
 
     private final CheckedPlayer checkedPlayer;

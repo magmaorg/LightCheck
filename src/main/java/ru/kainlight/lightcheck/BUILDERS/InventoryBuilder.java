@@ -34,11 +34,6 @@ public final class InventoryBuilder implements Listener, Cloneable {
         if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    public InventoryBuilder(Plugin plugin, Player player, int size, String title, boolean event) {
-        inventory = Bukkit.createInventory(player, size, title);
-        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
-    }
-
     public InventoryBuilder(Plugin plugin, InventoryHolder holder, int size, boolean event) {
         inventory = Bukkit.createInventory(holder, size);
         if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
@@ -53,12 +48,6 @@ public final class InventoryBuilder implements Listener, Cloneable {
             Plugin plugin, InventoryHolder holder, InventoryType type, Component title) {
         inventory = Bukkit.createInventory(holder, type, title);
         Bukkit.getPluginManager().registerEvents(this, plugin);
-    }
-
-    public InventoryBuilder(
-            Plugin plugin, InventoryHolder holder, int size, String title, boolean event) {
-        inventory = Bukkit.createInventory(holder, size, title);
-        if (event) Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public InventoryBuilder(

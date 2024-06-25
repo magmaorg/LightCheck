@@ -15,7 +15,6 @@ import ru.kainlight.lightcheck.Main;
 import java.util.*;
 
 public final class LightCheckAPI {
-
     private LightCheckAPI() {}
 
     private static final LightCheckAPI lightCheckAPI = new LightCheckAPI();
@@ -81,7 +80,6 @@ public final class LightCheckAPI {
 
     // * -- EVENTS -- * \\
     public static class PlayerCheckEvent extends PlayerEvent implements Cancellable {
-
         @Getter private static final HandlerList handlerList = new HandlerList();
 
         private final Player player;
@@ -104,7 +102,6 @@ public final class LightCheckAPI {
     }
 
     public static class PlayerApproveCheckEvent extends PlayerEvent implements Cancellable {
-
         @Getter private static final HandlerList handlerList = new HandlerList();
 
         private final Player player;
@@ -127,7 +124,6 @@ public final class LightCheckAPI {
     }
 
     public static class PlayerDisproveCheckEvent extends PlayerEvent implements Cancellable {
-
         @Getter private static final HandlerList handlerList = new HandlerList();
 
         private final Player player;

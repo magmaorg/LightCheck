@@ -5,7 +5,6 @@ import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public class Others {
-
     public static Others get() {
         return new Others();
     }

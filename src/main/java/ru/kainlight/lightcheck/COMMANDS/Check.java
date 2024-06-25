@@ -15,7 +15,6 @@ import ru.kainlight.lightcheck.Main;
 import java.util.*;
 
 public class Check implements CommandExecutor {
-
     private final Main plugin;
 
     public Check(Main plugin) {
@@ -312,7 +311,6 @@ public class Check implements CommandExecutor {
     }
 
     public static final class Completer implements TabCompleter {
-
         private final Main plugin;
 
         public Completer(Main plugin) {

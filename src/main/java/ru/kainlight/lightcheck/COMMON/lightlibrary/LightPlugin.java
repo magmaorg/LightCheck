@@ -21,7 +21,6 @@ import java.nio.charset.StandardCharsets;
 
 @Getter
 public class LightPlugin extends JavaPlugin {
-
     private final double CONFIG_VERSION = 1.0;
     public static final boolean paper = isPaper();
     public BukkitConfig messageConfig;

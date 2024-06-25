@@ -8,8 +8,6 @@
 # lightcheck.bypass > protection against a call for verification
 
 config-version: 1.0
-# only when the server is turned on
-update-notification: true
 
 # Russian or English available now
 language: RUSSIAN

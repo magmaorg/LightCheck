@@ -1,5 +1,9 @@
 package ru.kainlight.lightcheck.EVENTS;
 
+import io.papermc.paper.event.player.AsyncChatEvent;
+
+import net.kyori.adventure.text.minimessage.MiniMessage;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +21,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class CheckedListener implements Listener {
-
     private final Main plugin;
 
     public CheckedListener(Main plugin) {
@@ -87,7 +90,7 @@ public class CheckedListener implements Listener {
     }
 
     @EventHandler
-    public void onChatChecked(AsyncPlayerChatEvent event) {
+    public void onChatChecked(AsyncChatEvent event) {
         Player player = event.getPlayer();
 
         if (isCheckingAndAbilityEnabled(player, "block-chat.enable")) {
@@ -99,7 +102,10 @@ public class CheckedListener implements Listener {
                             .getConfig()
                             .getString("chat.dialog")
                             .replace("<username>", player.getName())
-                            .replace("<message>", event.getMessage());
+                            .replace(
+                                    "<message>",
+                                    MiniMessage.miniMessage()
+                                            .serialize(event.message())); // TODO: maybe?
 
             LightPlayer.sendMessage(privateDialog, player, staff);
         }

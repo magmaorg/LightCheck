@@ -1,8 +1,5 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
     java
-    `java-library`
 }
 
 group = "ru.kainlight"

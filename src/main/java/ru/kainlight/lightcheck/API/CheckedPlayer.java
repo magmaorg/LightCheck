@@ -11,7 +11,6 @@ import ru.kainlight.lightcheck.COMMON.lightlibrary.LightPlayer;
 import ru.kainlight.lightcheck.Main;
 
 public final class CheckedPlayer {
-
     @Getter private final Player player;
     @Getter private final Player inspector;
     @Getter @Setter private Long timer;

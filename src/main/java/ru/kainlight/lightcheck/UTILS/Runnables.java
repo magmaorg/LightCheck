@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public final class Runnables {
-
     private final Main plugin;
 
     public Map<CheckedPlayer, Integer> messageChatTimer = new HashMap<>();
