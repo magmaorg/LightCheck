@@ -27,11 +27,6 @@ permissions:
     default: op
   lightcheck.timer.stop:
     default: op
-  lightcheck.timer.*:
-    default: op
-    children:
-      lightcheck.timer.continue: true
-      lightcheck.timer.stop: true
   lightcheck.stop-all:
     default: op
   lightcheck.reload:
@@ -42,6 +37,7 @@ permissions:
       lightcheck.check: true
       lightcheck.approve: true
       lightcheck.disprove: true
-      lightcheck.timer.*: true
+      lightcheck.timer.continue: true
+      lightcheck.timer.stop: true
       lightcheck.stop-all: true
       lightcheck.reload: true
