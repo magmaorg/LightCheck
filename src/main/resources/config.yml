@@ -1,7 +1,6 @@
 ### Permission - Command - Description ###
 # lightcheck.list - /check list > List of checks now
 # lightcheck.check - /check <player> AND access to help commands
-# lightcheck.approve - /check approve > Approve checked player
 # lightcheck.rt - /check rt | removetimer > Remove timer
 # lightcheck.stop-all - /check stop-all > Stop all checks now
 

@@ -76,23 +76,6 @@ public class Check implements CommandExecutor {
                         });
                 lightSender.sendMessage(footer);
             }
-            case "approve" -> {
-                if (!sender.hasPermission("lightcheck.approve")) return true;
-
-                Optional<CheckedPlayer> checkedPlayer =
-                        LightCheckAPI.get().getCheckedPlayerByInspector(sender);
-                if (checkedPlayer.isEmpty()) return true;
-                CheckedPlayer checked = checkedPlayer.get();
-
-                String approve_staff =
-                        plugin.getMessageConfig()
-                                .getConfig()
-                                .getString("successfully.approve")
-                                .replace("<username>", checked.getPlayer().getName());
-                lightSender.sendMessage(approve_staff);
-
-                checked.approve();
-            }
             case "disprove" -> {
                 if (!(sender.hasPermission("lightcheck.disprove"))) return true;
 
@@ -243,7 +226,6 @@ public class Check implements CommandExecutor {
         sender.sendMessage(" &c&m   &e&l LIGHTCHECK ПОМОЩЬ &c&m   ");
         sender.sendMessage(" &c&l» &a/check list &8- &7список текущих проверок");
         sender.sendMessage(" &c&l» &a/check <player> &8- &7вызвать на проверку");
-        sender.sendMessage(" &c&l» &a/check approve &8- &7признать виновным");
         sender.sendMessage(" &c&l» &a/check disprove  &8- &7признать невиновным");
         sender.sendMessage(" &c&l» &a/check timer stop &8- &7отключить таймер");
         sender.sendMessage(" &c&l» &a/check stop-all &8- &7отменить все текущие проверки");
@@ -267,9 +249,7 @@ public class Check implements CommandExecutor {
                     || cmd.getName().equalsIgnoreCase("check")) {
                 if (args.length == 1) {
                     List<String> completionsCopy =
-                            new ArrayList<>(
-                                    Arrays.asList(
-                                            "list", "approve", "disprove", "timer", "stop-all"));
+                            new ArrayList<>(Arrays.asList("list", "disprove", "timer", "stop-all"));
                     List<String> playerNames =
                             plugin.getServer().getOnlinePlayers().stream()
                                     .map(Player::getName)

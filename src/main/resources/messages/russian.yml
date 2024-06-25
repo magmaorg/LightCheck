@@ -13,7 +13,6 @@ successfully:
     continue: "&a&l» &fВы восстановили таймер игроку <username> &7(<value>)"
     stop: "&a&l» &fВы остановили таймер игроку <username>"
   stop-all: "&a&l» &fВсе проверяемые игроки освобождены"
-  approve: "&a&l» &fИгрок &e<username> &fпризнан виновным в использовании читов"
   disprove:
     player: |
       &a&l» &fВы были признаны невиновным!

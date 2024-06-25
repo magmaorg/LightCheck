@@ -19,8 +19,6 @@ permissions:
     default: op
   lightcheck.check:
     default: op
-  lightcheck.approve:
-    default: not op
   lightcheck.disprove:
     default: op
   lightcheck.timer.continue:
@@ -35,7 +33,6 @@ permissions:
     children:
       lightcheck.list: true
       lightcheck.check: true
-      lightcheck.approve: true
       lightcheck.disprove: true
       lightcheck.timer.continue: true
       lightcheck.timer.stop: true
